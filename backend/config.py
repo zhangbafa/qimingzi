@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     admin_token: str = ""
     jwt_secret: str = ""
 
-    cors_allow_origins: str = "http://localhost:5173,http://localhost:8088"
+    cors_allow_origins: str = ""
 
     cache_ttl: int = 300
     cache_max_items: int = 10000

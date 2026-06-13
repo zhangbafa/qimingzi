@@ -1,9 +1,9 @@
 import type { GenerationConfig, GenerationResponse } from '../types'
 
-const API_BASE = import.meta.env.VITE_API_BASE || '/api/v1'
+const API_BASE = import.meta.env.VITE_API_BASE || ''
 
 export async function generateNames(config: GenerationConfig): Promise<GenerationResponse> {
-  const res = await fetch(`${API_BASE}/generate`, {
+  const res = await fetch(`${API_BASE}/api/v1/generate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(config),
