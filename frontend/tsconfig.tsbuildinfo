@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/api/generate.ts","./src/types/index.ts","./src/app.vue","./src/components/namegenerator.vue","./src/components/nameresult.vue","./src/components/scoregauge.vue"],"version":"5.7.3"}
