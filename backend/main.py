@@ -14,6 +14,20 @@ from database.lexicon import Lexicon, init_db
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     engine, session_factory = await init_db()
+
+    async with session_factory() as session:
+        from sqlalchemy import select, func
+        from database.models import Char
+        result = await session.execute(select(func.count()).select_from(Char))
+        count = result.scalar()
+
+    if count == 0:
+        logger.info("First run — building lexicon...")
+        db_path = settings.database_url.replace("sqlite+aiosqlite:///", "")
+        from database.lexicon import build_lexicon
+        await build_lexicon(db_path, verbose=False)
+        logger.info("Lexicon built successfully")
+
     async with session_factory() as session:
         lexicon = Lexicon(session)
         await lexicon.load()
